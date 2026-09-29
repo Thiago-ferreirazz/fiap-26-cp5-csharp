@@ -1,0 +1,64 @@
+@host = http://localhost:5199
+
+### Lista todos os veiculos
+GET {{host}}/api/v1/veiculos
+Accept: application/json
+
+### Busca um veiculo existente
+GET {{host}}/api/v1/veiculos/1
+Accept: application/json
+
+### Busca um veiculo inexistente
+GET {{host}}/api/v1/veiculos/9999
+Accept: application/json
+
+### Cadastra um veiculo
+POST {{host}}/api/v1/veiculos
+Content-Type: application/json
+
+{
+  "marca": "Honda",
+  "modelo": "Civic Touring",
+  "ano": 2025,
+  "preco": 189900.00,
+  "quilometragem": 1500,
+  "cor": "Preto",
+  "combustivel": "Gasolina",
+  "disponivel": true
+}
+
+### Tenta cadastrar dados invalidos
+POST {{host}}/api/v1/veiculos
+Content-Type: application/json
+
+{
+  "marca": "",
+  "modelo": "",
+  "ano": 1800,
+  "preco": -1,
+  "quilometragem": -10,
+  "cor": "",
+  "combustivel": "",
+  "disponivel": true
+}
+
+### Atualiza um veiculo
+PUT {{host}}/api/v1/veiculos/1
+Content-Type: application/json
+
+{
+  "marca": "Toyota",
+  "modelo": "Corolla Altis Premium",
+  "ano": 2024,
+  "preco": 155900.00,
+  "quilometragem": 13000,
+  "cor": "Prata",
+  "combustivel": "Flex",
+  "disponivel": true
+}
+
+### Exclui um veiculo
+DELETE {{host}}/api/v1/veiculos/3
+
+### Tenta excluir um veiculo inexistente
+DELETE {{host}}/api/v1/veiculos/9999

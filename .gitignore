@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+concessionaria.db
+concessionaria.db-shm
+concessionaria.db-wal
