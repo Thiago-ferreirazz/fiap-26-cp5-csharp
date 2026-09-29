@@ -57,13 +57,13 @@ public sealed class VeiculosController(AppDbContext dbContext) : ControllerBase
     {
         var veiculo = new Veiculo
         {
-            Marca = request.Marca.Trim(),
-            Modelo = request.Modelo.Trim(),
+            Marca = request.Marca,
+            Modelo = request.Modelo,
             Ano = request.Ano,
             Preco = request.Preco,
             Quilometragem = request.Quilometragem,
-            Cor = request.Cor.Trim(),
-            Combustivel = request.Combustivel.Trim(),
+            Cor = request.Cor,
+            Combustivel = request.Combustivel,
             Disponivel = request.Disponivel,
             CriadoEmUtc = DateTime.UtcNow
         };
@@ -92,13 +92,13 @@ public sealed class VeiculosController(AppDbContext dbContext) : ControllerBase
             return VeiculoNaoEncontrado(id);
         }
 
-        veiculo.Marca = request.Marca.Trim();
-        veiculo.Modelo = request.Modelo.Trim();
+        veiculo.Marca = request.Marca;
+        veiculo.Modelo = request.Modelo;
         veiculo.Ano = request.Ano;
         veiculo.Preco = request.Preco;
         veiculo.Quilometragem = request.Quilometragem;
-        veiculo.Cor = request.Cor.Trim();
-        veiculo.Combustivel = request.Combustivel.Trim();
+        veiculo.Cor = request.Cor;
+        veiculo.Combustivel = request.Combustivel;
         veiculo.Disponivel = request.Disponivel;
 
         await dbContext.SaveChangesAsync(cancellationToken);

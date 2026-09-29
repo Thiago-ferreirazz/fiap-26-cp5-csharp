@@ -18,7 +18,10 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
         veiculo.Property(item => item.Preco).HasPrecision(10, 2);
         veiculo.Property(item => item.Cor).HasMaxLength(30).IsRequired();
         veiculo.Property(item => item.Combustivel).HasMaxLength(30).IsRequired();
-        veiculo.Property(item => item.CriadoEmUtc).IsRequired();
+        // SQLite nao armazena o DateTimeKind; sem isso a data volta como Unspecified (sem "Z" no JSON).
+        veiculo.Property(item => item.CriadoEmUtc)
+            .IsRequired()
+            .HasConversion(value => value, value => DateTime.SpecifyKind(value, DateTimeKind.Utc));
         veiculo.HasIndex(item => new { item.Marca, item.Modelo });
         veiculo.HasIndex(item => item.Disponivel);
 

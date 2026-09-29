@@ -180,7 +180,10 @@ Outras chamadas prontas para execucao estao no arquivo `ConcessionariaApi.http`.
 - Validacao automatica com `[ApiController]` e DataAnnotations
 - Consultas de leitura com `AsNoTracking`
 - Status codes REST adequados
-- Respostas de erro no padrao `ProblemDetails`
+- Respostas de erro no padrao `ProblemDetails`, inclusive para rotas inexistentes (`404`) e metodos nao suportados (`405`) via `UseStatusCodePages`
+- Excecoes nao tratadas retornam `500` em `ProblemDetails`, sem expor stack trace, e sao registradas no log com o mesmo `traceId`
+- Campos de texto normalizados com `Trim` antes da validacao (ex.: `" A"` e rejeitado por ter menos de 2 caracteres)
+- Datas retornadas sempre em UTC (`criadoEmUtc` com sufixo `Z`), inclusive quando lidas do SQLite
 - Header `Location` no cadastro
 - Migration aplicada automaticamente na inicializacao
 - Segredo ou credencial nao e necessario para o SQLite local
